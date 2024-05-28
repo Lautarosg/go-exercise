@@ -16,15 +16,15 @@ The response shall constitute JSON of the following structure:
   "ltp": [
     {
       "pair": "BTC/CHF",
-      "amount": "49000.12"
+      "amount": 49000.12
     },
     {
       "pair": "BTC/EUR",
-      "amount": "50000.12"
+      "amount": 50000.12
     },
     {
       "pair": "BTC/USD",
-      "amount": "52000.12"
+      "amount": 52000.12
     }
   ]
 }
