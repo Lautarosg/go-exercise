@@ -31,14 +31,12 @@ The response shall constitute JSON of the following structure:
 
 ```
 
-You shall provide time accuracy of the data up to the last minute.
-
-
 # Requirements:
-1. Code shall be hosted in a remote public repository
-2. readme.md includes clear steps to build and run the app
-3. Integration tests
-4. Dockerized application
+1. You shall provide time accuracy of the data up to the last minute.
+2. Code shall be hosted in a remote public repository
+3. readme.md includes clear steps to build and run the app
+4. Integration tests
+5. Dockerized application
 
 # Docs
 The public Kraken API might be used to retrieve the above LTP information
