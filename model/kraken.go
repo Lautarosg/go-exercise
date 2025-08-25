@@ -43,18 +43,7 @@ func NewTickerClient() *TickerClient {
 // mapToKrakenPair converts standard pair format to Kraken API format
 func mapToKrakenPair(pair string) string {
 	switch pair {
-	case "BTC/USD":
-		return "BTCUSD"
-	case "BTC/EUR":
-		return "BTCEUR" 
-	case "BTC/CHF":
-		return "BTCCHF"
-	case "ETH/BTC":
-		return "ETHBTC"
-	case "BTC/ETH":
-		return "ETHBTC" // Note: ETH/BTC in Kraken format
 	default:
-		// Remove slash for other pairs
 		return strings.ReplaceAll(pair, "/", "")
 	}
 }
@@ -106,13 +95,10 @@ func (c *TickerClient) FetchLastPrices(pairs []string) (map[string]float64, erro
 			priceStr := data.C[0]
 			var price float64
 			if _, err := fmt.Sscanf(priceStr, "%f", &price); err == nil {
-				// Find which original pair matches this Kraken response
 				for originalPair, krakenQuery := range pairMapping {
 					// Handle Kraken's various pair naming conventions
 					if krakenResponsePair == krakenQuery ||
-					   // XXBTZUSD -> BTCUSD, XXBTZEUR -> BTCEUR  
 					   (strings.Contains(krakenResponsePair, "XXBTZ") && strings.Contains(krakenQuery, "BTC")) ||
-					   // XBTCHF -> BTCCHF
 					   (strings.Contains(krakenResponsePair, "XBT") && strings.Contains(krakenQuery, "BTC")) {
 						c.cache[originalPair] = cacheEntry{price: price, fetchedAt: now}
 						out[originalPair] = price
